@@ -22,6 +22,7 @@ public class SpawnPoints : MonoBehaviour
             _spawnRate = Random.Range(1, 5);
             var point = Instantiate(_pointPrefab);
             point.transform.position = new Vector2(Random.Range(-_xPosition, _xPosition), _yPosition);
+            point.transform.rotation = Quaternion.identity;
 
             yield return new WaitForSeconds(_spawnRate);
         }

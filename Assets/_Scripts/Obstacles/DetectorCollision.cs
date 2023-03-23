@@ -9,7 +9,7 @@ public class DetectorCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            Debug.Log("Game Over");
+            Time.timeScale = 0;
         }
     }
 }

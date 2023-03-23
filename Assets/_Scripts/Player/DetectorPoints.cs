@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class DetectorPoints : MonoBehaviour
 {
-    [SerializeField] private Text _scoreText;    
+    [SerializeField] private Text _scoreText;
+    [SerializeField] private GameObject _gameOverPanel;
     private float _score;
 
     private void Start()
@@ -19,6 +20,10 @@ public class DetectorPoints : MonoBehaviour
         {
             Destroy(collision.gameObject);
             _score++;
+        }
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            _gameOverPanel.SetActive(true);
         }
     }
 
