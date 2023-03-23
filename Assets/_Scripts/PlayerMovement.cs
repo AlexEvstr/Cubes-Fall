@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float _xBorder = 1.75f;
-    private float _speed = 2.0f;
+    private float _speed = 4.0f;
     private bool _direction;
 
     private void ChangeDirection()
