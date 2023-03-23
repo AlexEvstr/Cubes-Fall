@@ -18,14 +18,16 @@ public class PlayerMovement : MonoBehaviour
         if (_direction)
             transform.Translate(Vector2.right * _speed * Time.deltaTime);
         else
-            transform.Translate(Vector2.left * _speed * Time.deltaTime);
+            transform.Translate(Vector2.right * -_speed * Time.deltaTime);
     }
 
     private void Update()
     {
         MovePlayer();
 
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || transform.position.x >= _xBorder || transform.position.x <= -_xBorder)
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                                            || transform.position.x > _xBorder
+                                            || transform.position.x < -_xBorder)
         {
             ChangeDirection();
         }
