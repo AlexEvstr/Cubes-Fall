@@ -8,28 +8,36 @@ public class PlayerMovement : MonoBehaviour
     private float _speed = 4.0f;
     private bool _direction;
 
-    private void ChangeDirection()
+    private void Start()
     {
-        _direction = !_direction;
+        StartCoroutine(Mover());
+    }
+
+    private IEnumerator Mover()
+    {
+        while(true)
+        {
+            MovePlayer();
+            yield return new WaitForSeconds(0);
+        }
+
     }
 
     private void MovePlayer()
     {
-        if (_direction)
+        if (_direction && transform.position.x > -_xBorder)
+            transform.Translate(Vector2.left * _speed * Time.deltaTime);
+        else if (transform.position.x < _xBorder)
             transform.Translate(Vector2.right * _speed * Time.deltaTime);
-        else
-            transform.Translate(Vector2.right * -_speed * Time.deltaTime);
-    }
 
-    private void Update()
-    {
-        MovePlayer();
-
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                                            || transform.position.x > _xBorder
-                                            || transform.position.x < -_xBorder)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             ChangeDirection();
         }
+    }
+
+    private void ChangeDirection()
+    {
+        _direction = !_direction;
     }
 }
